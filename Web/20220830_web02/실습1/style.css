@@ -1,0 +1,42 @@
+/* 아래에 CSS를 작성해주세요. */
+.title {
+  text-align: center;
+  line-height: 10px;
+}
+* {
+  box-sizing: border-box;
+}
+.card-total{
+  display: flex;
+  white-space:wrap;
+  ;
+}
+.card-front {
+  width: 300px;
+  height: 40rem;
+  margin: 5px;
+}
+.card-middle {
+  width: 300px;
+  height: 40rem;
+  margin: 5px;
+}
+.card-image {
+  width: 100%;
+  border-radius: 1rem;
+}
+.card-name {
+  line-height: 1px;
+  padding: 1px;
+  border: 1px;
+  margin-top: 10px;
+}
+.profile-image {
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  vertical-align: middle;
+}
+.profile-name {
+  vertical-align: middle;
+}
