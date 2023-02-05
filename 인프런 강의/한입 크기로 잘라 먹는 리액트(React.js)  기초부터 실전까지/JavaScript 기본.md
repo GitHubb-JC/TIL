@@ -400,5 +400,40 @@
     >> 1
     ```
 
-  - 
+
+
+
+
+---
+
+# 7. 함수 표현식 & 화살표 함수
+
+```javascript
+let hello = function () { // hello 가 함수를 담고 있다.
+  return "안녕하세요 여러분";
+}; // 함수 표현식
+
+console.log(hello); // 함수 자체를 출력
+```
+
+<img src="JavaScript 기본.assets/image-20230203180258209.png" alt="image-20230203180258209"  align="left"/>
+
+
+
+```javascript
+let hello = function () { // hello 가 함수를 담고 있다.
+  return "안녕하세요 여러분";
+}; // 함수 표현식
+
+const helloText = hello();
+console.log(helloText); // 함수 자체를 출력
+```
+
+<img src="JavaScript 기본.assets/image-20230203180611951.png" alt="image-20230203180611951"  align='left' />
+
+
+
+
+
+# 8.
 
