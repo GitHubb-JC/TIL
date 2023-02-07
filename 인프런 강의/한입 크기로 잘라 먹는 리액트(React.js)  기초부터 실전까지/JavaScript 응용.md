@@ -1,5 +1,11 @@
 # JavaScript 응용
 
+###### 참고
+
+https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise
+
+
+
 
 
 ---
@@ -518,6 +524,12 @@ console.log("코드 끝"); //
 
 # 8. Promise - 콜백 지옥에서 탈출하기
 
+> Promise 객체는 비동기 작업이 맞이할 미래의 완료 또는 실패와 그 결과 값을 나타냅니다.
+>
+> Promise 는 프로미스가 생성된 시점에는 알려지지 않았을 수도 있는 값을 위한 대리자로, 비동기 연산이 종료된 이후에 결과 값과 실패 사유를 처리하기 위한 처리기를 연결할 수 있습니다. 프로미스를 사용하면 비동기 메서드에서 마치 동기 메서드처럼 값을 반환할 수 있습니다. 다만 최종 결과를 반환하는 것이 아니고, 미래의 어떤 시점에 결과를 제공하겠다는 '약속'(프로미스)을 반환합니다.
+
+<img src="JavaScript 응용.assets/image-20230207113951765.png" alt="image-20230207113951765"  align='left' />
+
 - Pending : 대기 상태, 비동기 작업이 진행중이거나 작업을 시작 할 수 없는 문제가 발생한 상태
   - resolve 해결 : Fulfilled 상태로 넘어간다.
   - reject 거부 : Rejected 상태로 넘어간다.
@@ -557,7 +569,7 @@ isPositive(
 ```javascript
 function isPositiveP(number) {						//2. number로 101이 넘어옴
   const executor = (resolve, reject) => {
-    // 비동기를 실행하는 executor실행자
+    // 비동기를 실질적으로 수행하는 executor실행자
     setTimeout(() => {
       if (typeof number === "number") {				//4. number 101이니 if문 실행
         // 성공 -> resolve
@@ -677,3 +689,245 @@ taskA(5, 1)									//taskA가 하나의 promise
 ```
 
 <img src="JavaScript 응용.assets/image-20230206161351509.png" alt="image-20230206161351509" style="zoom:80%;"  align="left" />
+
+
+
+```javascript
+function taskA(a, b) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const res = a + b;
+      resolve(res);
+    }, 3000);
+  });
+}
+
+function taskB(a) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const res = a * 2;
+      resolve(res);
+    }, 1000);
+  });
+}
+
+function taskC(a) {
+  return new Promise((resolve, reject) => {
+    setTimeout(() => {
+      const res = a * -1;
+      resolve(res);
+    }, 2000);
+  });
+}
+
+const bPromiseResult = taskA(5, 1).then((a_res) => {
+  console.log("A result : ", a_res);
+  return taskB(a_res);
+});
+
+console.log("중간에 뭔가를 더 할수도 있고");
+console.log("콜백 지옥보다 가독성도 있고");
+
+bPromiseResult
+  .then((b_res) => {
+    console.log("B result : ", b_res);
+    return taskC(b_res);
+  })
+  .then((c_res) => {
+    console.log("C result : ", c_res);
+  });
+```
+
+<img src="JavaScript 응용.assets/image-20230207101212852.png" alt="image-20230207101212852" style="zoom:80%;" align='left' />
+
+
+
+
+
+---
+
+# 9. async & await - 직관적인 비동기 처리 코드 작성하기
+
+## async
+
+>**`async function`** 선언은 [`AsyncFunction`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/AsyncFunction)객체를 반환하는 하나의 비동기 함수를 정의합니다. 비동기 함수는 이벤트 루프를 통해 비동기적으로 작동하는 함수로, 암시적으로 [`Promise`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)를 사용하여 결과를 반환합니다. 그러나 비동기 함수를 사용하는 코드의 구문과 구조는, 표준 동기 함수를 사용하는것과 많이 비슷합니다.
+
+```javascript
+function hello() {
+  return "hello";
+}
+
+async function helloAsync() {	//async를 붙여주면 promise객체를 넘겨주는거야
+  return "hello Async";
+}
+
+console.log(hello());
+console.log(helloAsync());		//출력이 promise
+```
+
+<img src="JavaScript 응용.assets/image-20230207102045095.png" alt="image-20230207102045095" style="zoom:80%;" align='left' />
+
+
+
+```javascript
+function hello() {
+  return "hello";
+}
+
+async function helloAsync() {
+  return "hello Async";
+}
+
+helloAsync().then((res) => {	//여기서는 promise의 resolve값이 들어오는 거야
+  console.log(res);
+}); //
+```
+
+<img src="JavaScript 응용.assets/image-20230207102423963.png" alt="image-20230207102423963" style="zoom:80%;" align='left' />
+
+
+
+```javascript
+function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);			//resolve가 아무것도 없으니 그냥 ms만큼 기다렸다가 실행
+  });
+}
+
+async function helloAsync() {
+  return delay(3000).then(() => {		//그냥 3초 뒤 실행
+    return "hello Async";
+  });
+}
+
+helloAsync().then((res) => {
+  console.log(res);
+}); //
+```
+
+<img src="JavaScript 응용.assets/image-20230207103305181.png" alt="image-20230207103305181" style="zoom:80%;" align='left'/>
+
+
+
+## await
+
+> `await`연산자는 [`Promise`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Promise)를 기다리기 위해 사용됩니다. 연산자는 [`async function`](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Statements/async_function) 내부에서만 사용할 수 있습니다.
+>
+> `await` 문은 `Promise`가 fulfill되거나 `reject` 될 때까지 `async` 함수의 실행을 일시 정지하고, `Promise`가 fulfill되면 `async` 함수를 일시 정지한 부분부터 실행합니다. 이때 `await` 문의 반환값은 `Promise` 에서 fulfill된 값이 됩니다.
+>
+> 만약 `Promise`가 `reject`되면, `await` 문은 `reject`된 값을 `throw`합니다.
+>
+> `await` 연산자 다음에 나오는 문의 값이 `Promise`가 아니면 해당 값을 [resolved Promise](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve)로 변환시킵니다.
+
+```javascript
+function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function helloAsync() {
+  await delay(3000);
+  //async키워드가 붙은 함수 내에서만 사용가능
+  //await이 붙으면 이 라인을 동기적으로 사용
+  //즉, promise개체가 아닌 res 또는 err 로 결과 나옴
+  //라인이 다 수행되기 전까지 밑의 내용을 수행하지 않음
+  return "hello Async";
+}
+
+helloAsync().then((res) => {
+  console.log(res);
+});
+```
+
+<img src="JavaScript 응용.assets/image-20230207103853989.png" alt="image-20230207103853989" style="zoom:80%;" align='left' />
+
+
+
+```javascript
+function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function helloAsync() {
+  await delay(3000);
+  return "hello Async";
+}
+
+async function main() {						//2. async함수 promise반환
+  const res = await helloAsync();			
+  //3. async함수인 helloAsync실행 await 걸고 동기적으로 실행하여 res값으로 반환
+  console.log(res);							//4. console로 res값 찍어
+}
+
+main();										//1. main실행
+```
+
+<img src="JavaScript 응용.assets/image-20230207103853989.png" alt="image-20230207103853989" style="zoom:80%;" align='left' />
+
+
+
+```javascript
+function delay(ms) {
+  return new Promise((resolve) => {
+    setTimeout(resolve, ms);
+  });
+}
+
+async function helloAsync() {
+  await delay(3000);
+  return "hello Async";
+}
+
+async function main() {					//2. async 함수
+  const res = helloAsync();				//3. 이번엔 await없이 helloAsync만 실행 promise함수 반환	
+  console.log(res);						//4. console로 찍으면 promise개체 반환
+}
+
+main();									//1. main실행
+```
+
+<img src="JavaScript 응용.assets/image-20230207121148535.png" alt="image-20230207121148535" style="zoom:80%;" align='left' />
+
+
+
+
+
+---
+
+# 10. API 호출하기
+
+> API(Application Programming Interface) 응용 프로그래밍 인터페이스
+>
+> 응용 프로그램에서 사용할 수 있도록, 운영체제나 프로그래밍 언어가 제공하는 기능을 제어할 수 있게 만든 인터페이스를 뜻한다. 주로 파일제어, 창 제어, 화상처리, 문자제어 등을 위한 인터페이스를 제공한다.
+
+<img src="JavaScript 응용.assets/image-20230207160009894.png" alt="image-20230207160009894" style="zoom:80%;" align='left' />
+
+
+
+```javascript
+let response = fetch("https://jsonplaceholder.typicode.com/posts").then( 	
+    					//오픈 API를 이용하여 post를 가져와
+  (res) => {
+    console.log(res);	//fetch를 이용하면 편지지가 아닌 봉투인 response객체 자체로 온다	
+  }	
+); //
+```
+
+<img src="JavaScript 응용.assets/image-20230207160908146.png" alt="image-20230207160908146" style="zoom:80%;" align='left' />
+
+
+
+```javascript
+async function getData() {		
+  let rawResponse = await fetch("https://jsonplaceholder.typicode.com/posts");	//날것의 response를 받고
+  let jsonResponse = await rawResponse.json();									//json으로 다시 저장해줘
+  console.log(jsonResponse);
+}
+
+getData();
+```
+
+<img src="JavaScript 응용.assets/image-20230207161303756.png" alt="image-20230207161303756" style="zoom:80%;" align='left' />
