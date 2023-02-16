@@ -208,3 +208,11 @@ https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/d
 <img src="React 기본 - 간단한 일기장 프로젝트.assets/img-167636357341318.png" alt="img" style="zoom:80%;" />
 
 <img src="React 기본 - 간단한 일기장 프로젝트.assets/img-167636357341319.png" alt="img" style="zoom:80%;" />
+
+
+
+
+
+---
+
+# 6. 리스트 데이터 수정하기
