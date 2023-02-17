@@ -213,6 +213,111 @@ https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/d
 
 
 
+
+
 ---
 
 # 6. 리스트 데이터 수정하기
+
+## App.js
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217102015833.png" alt="image-20230217102015833" style="zoom:80%;" align='left' />
+
+- onEdit 함수를 만들어준다.
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217102129937.png" alt="image-20230217102129937" style="zoom:80%;" align='left' />
+
+- onEdit함수를 프롭스로 전달해준다.
+
+
+
+## DiaryList.js
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217102252907.png" alt="image-20230217102252907" style="zoom:80%;" align='left' />
+
+- onEdit을 그대로 DiaryItem으로 전달 해준다.
+
+
+
+## DiaryItem.js
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217102422035.png" alt="image-20230217102422035" style="zoom:80%;" align='left' />
+
+- 프롭스로 받은 함수들을 컴포넌트에 추가해주고
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217102551412.png" alt="image-20230217102551412" style="zoom:80%;" align='left' />
+
+- 수정을 위한 기능들을 구현해준다.
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217102719912.png" alt="image-20230217102719912" style="zoom:80%;" align='left' />
+
+- 각 버튼에 onClick 메서드로 기능들을 연결해준다.
+
+
+
+
+
+---
+
+# 7. React Lifecycle 제어하기
+
+## Lifecycle?
+
+> 생애주기란, 일반적으로 시간에 흐름에 따라 탄생부터 죽음에 이르는 순간까지 단계적인 과정이다.
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217103001688.png" alt="image-20230217103001688" style="zoom:80%;" />
+
+- 위의 그림이 React에서의 Lifecycle이다.
+
+
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217103106932.png" alt="image-20230217103106932" style="zoom:80%;" />
+
+- 엄밀히 따지면 Lifecycle 메서드는 클래스 기반의 코드에서만 사용이 가능하다.
+- 하지만 클래스형 코드는 함수형 코드에 비해서 길이가 길어지고, 중복이 많이 되며 가독성이 좋지 못하다는 문제들이 있다.
+
+
+
+## Hooks?
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217103319323.png" alt="image-20230217103319323" style="zoom:80%;" align='left' />
+
+- 그래서 등장한 것이 바로 Hooks이다.
+- hooks는 함수형 컴포넌트에서도 Lifecycle 함수를 사용할 수 있도록 개발된 것으로 use를 이용하는 함수들이 바로 그 결과물이다.
+
+
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217103521545.png" alt="image-20230217103521545" style="zoom:80%;" />
+
+- use함수를 이용한 Hooks의 형태는 위와 같다. 
+- 현재의 추세는 가능하면 함수형 컴포넌트로 개발을 진행하는 것이다.
+
+
+
+## Lifecycle.js
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217110118620.png" alt="image-20230217110118620" style="zoom:80%;" align='left' />
+
+- UnmountTest 컴포넌트
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217105451697.png" alt="image-20230217105451697" style="zoom:80%;" align='left' />
+
+- Lifecycle 컴포넌트
+
+
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217105203753.png" alt="image-20230217105203753" style="zoom:80%;" align='left' />
+
+- on/off를 누르면 UnmountTest컴포넌트가 mount 되면서 함수 내의 콘솔 내용이 찍히고
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230217105301612.png" alt="image-20230217105301612" style="zoom:80%;" align='left' />
+
+- on/off를 누르면 UnmountTest컴포넌트가 unmount 되면서  return값이 불려와진다.
+
+
+
+
+
+---
+
+# 8. React에서 API 호출하기
