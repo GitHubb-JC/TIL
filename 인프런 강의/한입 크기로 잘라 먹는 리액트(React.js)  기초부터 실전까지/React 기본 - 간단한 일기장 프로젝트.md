@@ -322,3 +322,8 @@ https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/d
 
 # 8. React에서 API 호출하기
 
+## App.js
+
+- getData
+- initData
+- setData

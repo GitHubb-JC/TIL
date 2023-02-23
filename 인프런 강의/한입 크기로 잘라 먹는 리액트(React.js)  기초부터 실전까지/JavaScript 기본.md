@@ -433,7 +433,3 @@ console.log(helloText); // 함수 자체를 출력
 
 
 
-
-
-# 8.
-
