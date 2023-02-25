@@ -324,6 +324,18 @@ https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/d
 
 ## App.js
 
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230224145850408.png" alt="image-20230224145850408" style="zoom:80%;" align='left'/>
+
+- json placeholder의 더미 데이터를 API로 가져올거야
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230224150123721.png" alt="image-20230224150123721" style="zoom:80%;" align='left'/>
+
+- https://jsonplaceholder.typicode.com/comments
+- comments 데이터를 가져올거임
+
+<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230224150257878.png" alt="image-20230224150257878" style="zoom:80%;" align='left'/>
+
 - getData
+- 
 - initData
 - setData
