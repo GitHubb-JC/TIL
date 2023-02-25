@@ -336,6 +336,5 @@ https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/d
 <img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230224150257878.png" alt="image-20230224150257878" style="zoom:80%;" align='left'/>
 
 - getData
-- 
 - initData
 - setData
