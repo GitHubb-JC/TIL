@@ -932,5 +932,3 @@ getData();
 
 <img src="JavaScript 응용.assets/image-20230207161303756.png" alt="image-20230207161303756" style="zoom:80%;" align='left' />
 
-
-

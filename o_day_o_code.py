@@ -1,4 +1,5 @@
 import sys
+import numpy as np
 sys.stdin = open('o_day_o_code.txt')
 
 ## 띄어쓰기로 구분되는 값 받기
