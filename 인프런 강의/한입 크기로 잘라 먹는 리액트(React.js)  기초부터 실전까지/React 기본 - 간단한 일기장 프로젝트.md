@@ -160,35 +160,6 @@ https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/d
 
 
 
-
-
-
-
-#  4. 리스트 데이터 추가하기
-
-- 리액트에서의 데이터 구조
-  - DiaryEditor 와 DiaryList 사이에서는 데이터를 직접적으로 주고 받을 수 없다.
-  - 따라서 DE에서 setData 함수로 정보를 변경하고
-  - 변경된 data 가 DL로 전달 되어 표시되도록 한다.
-
-![img](React 기본 - 간단한 일기장 프로젝트.assets/img.png)
-
-- App.js에 setData 와 data 를 만들고 onCreate 함수도 만들어 준다.
-
-![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16763597284301.png)
-
-- Editor에서 props로 onCreate함수를 전달 받아 새로운 일기를 만든다.
-
-![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16763597284302.png)
-
-![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16763597284313.png)
-
-![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16763597284314.png)
-
-
-
-
-
 ---
 
 # 5. 리스트 데이터 삭제하기
@@ -338,4 +309,3 @@ https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/d
 - getData
 - initData
 - setData
-- 
