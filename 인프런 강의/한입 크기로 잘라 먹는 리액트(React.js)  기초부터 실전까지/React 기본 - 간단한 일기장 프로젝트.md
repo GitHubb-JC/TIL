@@ -304,8 +304,303 @@ https://www.inflearn.com/course/%ED%95%9C%EC%9E%85-%EB%A6%AC%EC%95%A1%ED%8A%B8/d
 - https://jsonplaceholder.typicode.com/comments
 - comments 데이터를 가져올거임
 
-<img src="React 기본 - 간단한 일기장 프로젝트.assets/image-20230224150257878.png" alt="image-20230224150257878" style="zoom:80%;" align='left'/>
 
-- getData
-- initData
-- setData
+
+####  - getData
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808361713070.png)
+
+- getData로 API에서 정보를 가져온다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808361713171.png)
+
+- 마운트시 바로 가져오도록 작성해준다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808361713172.png)
+
+- 콘솔에 찍으면 이렇게 불러온걸 볼수 있다.
+
+
+
+#### - getData > initData
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808361713173.png)
+
+
+
+
+
+---
+
+# 9. React developer tools
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042324.png)
+
+- react 개발에 무척 도움이 되는 툴!
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004181.png)
+
+- 이렇게 Components와 Profiler가 react developer tools가 제공해주는 거야
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004182.png)
+
+- props, state, key 값 등등 여러 가지 정보들을 편하게 볼 수 있도록 제공해줘!
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004193.png)
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004204.png)
+
+- 여기의 highlight 옵션은 컴포넌트가 update 되고 있으면 해당 컴포넌트를 표시해줘
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004205.png)
+
+- 위와 같이 노란줄로 표시해줘
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004206.png)
+
+- state의 변화도 실시간으로 확인 할 수 있어
+
+
+
+
+
+
+
+
+
+------
+
+# 10. 최적화1 - 연산 결과 재사용
+
+## - Memoization
+
+> 한번 실행한 연산의 결과를 기억해 두었다가 다음에 같은 연산을 요구할 때, 기억했던 결과를 바로 반환하는 방법
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004207.png)
+
+
+
+## - 감정분석 함수 추가
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004218.png)
+
+- 이렇게 프로그램을 작성하면 getDiaryAnalysis가 두번 실행해
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-16780835004219.png)
+
+- 가장 처음에 data를 불러오면 아무런 정보가 없어 그 상태에서 getDiaryAnalysis가 한번 실행이 되고 
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042110.png)
+
+- 이후에 getData에서 data를 update하게 되면 App 컴포넌트를 relender 하게 되고 getDiaryAnalysis가 다시 실행이 되면서 결과를 가져온다.
+- 하지만 이렇게 작성하면 함수의 값에 전현 관련이 없는 relender 상황에서도 다시 연산을 수행해서 비효율적이다.
+- 이럴때 useMemo를 사용할 수 있다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042111.png)
+
+- 이렇게 수정해주면 data의 길이가 변화할 때만 함수를 다시 실행해줘!
+
+> 어떠한 값을 return하는 함수가 있을 때 return까지의 연산을 최적화 하고 싶다면 useMemo를 사용하여 어떤 값이 변할때 이 함수를 수행할지 명시하면 이 함수를 값처럼 사용하여 최적화를 수행해 줄 수 있다.
+
+
+
+
+
+------
+
+# 11. 최적화2 - React.memo
+
+## - react.memo
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042112.png)
+
+- 코드를 작성하다 보면 이렇게 비효율적인 리렌더가 이루어질 수 있다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042113.png)
+
+- 이렇게 해당 조건을 걸어 비효율적인 업데이트 상황을 피할 수 있다.
+
+[
+React 최상위 API – ReactA JavaScript library for building user interfacesko.reactjs.org](https://ko.reactjs.org/docs/react-api.html#reactmemo)
+
+> React.memo
+>
+> ```
+> const MyComponent = React.memo(function MyComponent(props) {
+>   /* props를 사용하여 렌더링 */
+> });
+> ```
+>
+> 컴포넌트가 동일한 props로 동일한 결과를 리렌더링해낸다면, React.memo를 호출하고 결과를 메모이징(Memoizing)하도록 래핑하여 경우에 따라 성능 향상을 누릴 수 있습니다. 따라서, React는 컴포넌트를 렌더링하지 않고 마지막으로 렌더링된 결과를 재사용합니다.
+
+
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042114.png)
+
+- 실험을 위해 OptimizeTest 라는 컴포넌트를 새로 만든다.
+- countView와 textView를 만들어 화면에 띄워준다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042115.png)
+
+- count만을 변화 시켜도 text의 값이 리렌더 된다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042216.png)
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042217.png)
+
+- 이렇게 React.memo를 이용해서 함수를 감싸주면 안쪽의 함수를 props로 인식하고 이 props가 바뀔 때 리렌더를 수행해준다.
+
+
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042218.png)
+
+- 새롭게 코드를 작성해본다. 이번에는 자신에게 자신을 다시 넣어주는 방식으로 작성한다. 이러면 props의 변화는 없을테니 콘솔이 찍히지 않을 것이라 생각된다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042219.png)
+
+- 실제로 A는 리렌더 되지 않았지만 B는 변화가 없어도 리렌더가 되는 것으로 보인다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042220.png)
+
+- 이유는 JS가 객체, 함수 또는 비원시 타입을 비교할 때 주소에 의한 비교를 하기 때문이다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042221.png)
+
+- JS가 객체를 비교할 때는 이렇게 주소가 같은 경우에 Equal 이라고 판단한다.
+
+
+
+> props가 같는 복잡한 객체에 대해서는 앝은 비교만 하는 것이 기본이다. 이럴때 다른 비교동작을 원하면, 두 번째 인자로 별도의 비교함수를 제공할 수 있다.
+>
+> ```
+> function MyComponent(props) {
+>   /* props를 사용하여 렌더링 */
+> }
+> function areEqual(prevProps, nextProps) {
+>   /*
+>   nextProps가 prevProps와 동일한 값을 가지면 true를 반환하고, 그렇지 않다면 false를 반환
+>   */
+> }
+> export default React.memo(MyComponent, areEqual);
+> ```
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808350042222.png)
+
+- 위와 같이 areEqual을 이용해서 객체 속의 값까지 비교 가능해
+
+
+
+
+
+ 
+
+------
+
+# 12. 최적화3 - useCallback
+
+## - RDT를 이용하여 최적화 해보자
+
+
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820807982.png)
+
+
+
+- 어떠한 컴포넌트를 최적화 할 것인가?!
+- 이를 위해서 우리는 React Developer Tools 의 Highlight 기능을 이용할 것이다. 이 기능으로 어떤 수정을 가할 때 어떤 컴포넌트들이 반응하는지 파악하고 최적화를 해준다.
+
+ 
+
+## - DE를 최적화 해보자
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820807983.png)
+
+- DE는 props로 받는 onCreate 함수가 변할 때 리렌더 된다.
+- useEffect를 이용해서 console로 언제 렌더링 되는 지도 찍어보자
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820807984.png)
+
+- 전에 사용했던 React.memo를 이용하여 최적화 해보자
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820807985.png)
+
+
+
+- App.js 를 보면 마운트 되자마자 두번 렌더링을 진행해 따라서 DE도 두번 onCreate가 렌더링 됨에 따라 같이 렌더링
+- onCreate가 값이라면 React.memo 만으로 최적화가 가능 하겠지만 함수여서 반복 렌더링
+
+ 
+
+### - useCallback
+
+```
+const memoizedCallback = useCallback(
+  () => {
+    doSomething(a, b);
+  },
+  [a, b],
+);
+```
+
+> 메모이제이션된 콜백함수를 반환하는 훅으로
+> 의존성 배열인 [ ] 안의 값이 바뀌는 게 아니면 { } 속의 함수를 그대로 재사용 할 수 있도록 해준다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820808086.png)
+
+- 이렇게 useCallback을 이용하여 onCreate함수를 감싸주니 더이상 다른 동작을 할때 DE가 리렌더 되지 않는다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820808087.png)
+
+- 그런데 저장이 이상하게 동작한다
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820808288.png)
+
+- 위에서 의존성 배열에 [ ] 빈 배열을 넣어 주어서 그렇다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820808289.png)
+
+- 그렇다고 이렇게 data를 받게 되면 이전과 마찬가지고 data가 바뀔 때마나 onCreate함수가 리렌더 되고 DE가 리렌더
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-167808820808290.png)
+
+- 이렇게 함수형 업데이트로 해결 가능해!
+
+
+
+
+
+
+
+------
+
+# 13. 최적화 최종!
+
+## - DiaryItem.js 를 최적화 해보자
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-1678166834301109.png)
+
+- DI 를 보면
+- **onEdit**, **onRemove**함수 그리고 수정이 가능한 **content**를 props로 받는다.
+- 따라서 이 요소들이 불필요하게 렌더링 되지 않게 해주면 최적화 되는 것이다.
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-1678166834301110.png)
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-1678166834301111.png)
+
+- 기본적으로 React.memo를 이용하여 최적화를 하고 useEffect로 또 언제 렌더링 되는지 파악할 수 있도록 한다.
+
+
+
+### - onRemove 함수 최적화
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-1678166834301112.png)
+
+- useCallback, 기존의 data를 받아오는 함수형 업데이트, 의존성 배열을 이용하여 최적화
+
+
+
+### - onEdit 최적화
+
+![img](React 기본 - 간단한 일기장 프로젝트.assets/img-1678166834302113.png)
+
+- useCallback, 기존의 data를 받아오는 함수형 업데이트, 의존성 배열을 이용하여 최적화
