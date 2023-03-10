@@ -603,4 +603,4 @@ const memoizedCallback = useCallback(
 
 ![img](React 기본 - 간단한 일기장 프로젝트.assets/img-1678166834302113.png)
 
-- useCallback, 기존의 data를 받아오는 함수형 업데이트, 의존성 배열을 이용하여 최적화
+- useCallback, 기존의 data를 받아오는 함수형 업데이트, 의존성 배열을 이용하여 최적화 
