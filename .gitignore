@@ -283,5 +283,6 @@ cython_debug/
 *.sqlite3
 *.db-shm
 *.db-wal
+*.csv
 
 # End of https://www.toptal.com/developers/gitignore/api/database
