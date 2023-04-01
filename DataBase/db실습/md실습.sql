@@ -114,3 +114,13 @@ ORDER BY (weight/((height * 0.01) * (height * 0.01))) DESC LIMIT 5;
 SELECT * FROM healthcare WHERE age LIKE '2_';
 
 SELECT * FROM healthcare WHERE age LIKE '3_';
+
+SELECT 
+  id, 
+  (weight/((height * 0.01) * (height * 0.01))) AS BMI
+FROM healthcare WHERE smoking = 3 
+ORDER BY (weight/((height * 0.01) * (height * 0.01))) DESC LIMIT 5;
+
+SELECT * FROM healthcare WHERE age LIKE '2_';
+
+SELECT * FROM healthcare WHERE age LIKE '3_';
