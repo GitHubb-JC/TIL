@@ -124,3 +124,13 @@ ORDER BY (weight/((height * 0.01) * (height * 0.01))) DESC LIMIT 5;
 SELECT * FROM healthcare WHERE age LIKE '2_';
 
 SELECT * FROM healthcare WHERE age LIKE '3_';
+
+SELECT COUNT(*) FROM healthcare;
+
+SELECT MAX(age), MIN(age) FROM healthcare;
+
+SELECT MAX(height), MIN(height), MAX(weight), MIN(weight) FROM healthcare;
+
+SELECT COUNT(*) FROM healthcare WHERE 160 <=height and height<= 170;
+
+SELECT waist FROM healthcare WHERE is_drinking=1 AND waist != '' ORDER BY waist DESC LIMIT 5;
