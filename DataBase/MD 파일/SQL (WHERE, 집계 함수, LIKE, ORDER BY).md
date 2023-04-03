@@ -103,3 +103,27 @@
 
 
 
+
+
+
+
+
+
+ 
+
+------
+
+# ORDER BY
+
+- 조회 결과 집합을 정렬한다.
+- 정렬 순서를 결정하기 위한 2개의 keyword를 제공
+  - ASC(default 값) : 오름차순
+  - DESC : 내림차순
+
+
+
+![img](WHERE_LIKE_ORDER.assets/img-16804852657991.png)
+
+
+
+#  
