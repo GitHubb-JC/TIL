@@ -7,6 +7,8 @@ CREATE TABLE users(
   balance INTEGER NOT NULL
 );
 
+
+
 SELECT COUNT(*) FROM users WHERE age LIKE "2_";
 
 SELECT * FROM users WHERE phone LIKE "02%";
@@ -23,7 +25,6 @@ SELECT last_name, first_name, balance FROM users ORDER BY balance DESC LIMIT 10;
 
 SELECT last_name, COUNT(*) FROM users GROUP BY last_name;
 
-
 CREATE TABLE articles (
   title TEXT NOT NULL,
   content TEXT NOT NULL
@@ -34,3 +35,4 @@ INSERT INTO articles(title, content) VALUES ("1번 제목", "1번 내용");
 ALTER TABLE articles RENAME TO news;
 
 ALTER TABLE news ADD COLUMN created_at TEXT NOT NULL;
+

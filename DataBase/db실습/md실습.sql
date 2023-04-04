@@ -78,7 +78,6 @@ SELECT COUNT(*) FROM healthcare WHERE va_left>=2.0 AND va_right>=2.0;
 
 SELECT COUNT(DISTINCT sido) FROM healthcare;
 
-
 -- D02 ------------------------------
 -- D02 ------------------------------
 -- D02 ------------------------------
@@ -111,26 +110,20 @@ SELECT
 FROM healthcare WHERE smoking = 3 
 ORDER BY (weight/((height * 0.01) * (height * 0.01))) DESC LIMIT 5;
 
-SELECT * FROM healthcare WHERE age LIKE '2_';
+-- D03 ------------------------------
+-- D03 ------------------------------
+-- D03 ------------------------------
 
-SELECT * FROM healthcare WHERE age LIKE '3_';
+SELECT smoking, count(*) FROM healthcare WHERE smoking != "" GROUP BY smoking;
 
-SELECT 
-  id, 
-  (weight/((height * 0.01) * (height * 0.01))) AS BMI
-FROM healthcare WHERE smoking = 3 
-ORDER BY (weight/((height * 0.01) * (height * 0.01))) DESC LIMIT 5;
+SELECT is_drinking, count(*) FROM healthcare WHERE is_drinking != "" GROUP BY is_drinking;
 
-SELECT * FROM healthcare WHERE age LIKE '2_';
+SELECT is_drinking, count(*) AS "blood_pressure >= 200"
+FROM healthcare 
+WHERE blood_pressure >= 200 AND blood_pressure != "" GROUP BY is_drinking;
 
-SELECT * FROM healthcare WHERE age LIKE '3_';
-
-SELECT COUNT(*) FROM healthcare;
-
-SELECT MAX(age), MIN(age) FROM healthcare;
-
-SELECT MAX(height), MIN(height), MAX(weight), MIN(weight) FROM healthcare;
-
-SELECT COUNT(*) FROM healthcare WHERE 160 <=height and height<= 170;
-
-SELECT waist FROM healthcare WHERE is_drinking=1 AND waist != '' ORDER BY waist DESC LIMIT 5;
+SELECT sido, count(*) AS "인구수" 
+FROM healthcare 
+WHERE
+  (SELECT sido, count(*) FROM healthcare GROUP BY sido)
+GROUP BY sido;

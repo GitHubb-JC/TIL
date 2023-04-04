@@ -28,3 +28,13 @@
 - +, -, *, / 와 같은 산술 연산자와 우선 순위를 지정하는 () 기호를 연산에 활용할 수 있음
 
 ![img](https://blog.kakaocdn.net/dn/cIZVyj/btr7gj01NG7/hpjWX5iFmgA1rscn6bkNwK/img.png)
+
+
+
+
+
+
+
+---
+
+# SQL
