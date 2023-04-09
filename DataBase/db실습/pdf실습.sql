@@ -73,3 +73,13 @@ SELECT * FROM users ORDER BY age, last_name LIMIT 10;
 SELECT last_name, first_name, balance FROM users ORDER BY balance DESC LIMIT 10;
 
 SELECT last_name, COUNT(*) FROM users GROUP BY last_name;
+
+SELECT last_name, COUNT(*) FROM users GROUP BY last_name;
+
+SELECT * FROM users ORDER BY age LIMIT 10;
+
+SELECT * FROM users ORDER BY age, last_name LIMIT 10;
+
+SELECT last_name, first_name, balance FROM users ORDER BY balance DESC LIMIT 10;
+
+SELECT last_name, COUNT(*) FROM users GROUP BY last_name;
