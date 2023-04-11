@@ -35,3 +35,12 @@ INSERT INTO articles(title, content) VALUES ("1번 제목", "1번 내용");
 ALTER TABLE articles RENAME TO news;
 
 ALTER TABLE news ADD COLUMN created_at TEXT NOT NULL;
+
+SELECT 
+  id, 
+  CASE
+    WHEN gender = 1 THEN "male"
+    WHEN gender = 2 THEN "female"
+  END
+FROM healthcare
+LIMIT 3;
