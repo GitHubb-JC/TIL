@@ -189,10 +189,6 @@ ASCII (American Standard Code for Information Interchange) 미국 정보교환 �
 
 
 
- 
-
-
-
 
 
 ## 2) chr(아스키코드)
