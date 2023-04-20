@@ -91,3 +91,12 @@
 - 딕셔너리의 (key, value) 쌍 목록이 담긴 dict_items 객체 반환
 
 ![img](https://blog.kakaocdn.net/dn/uSw3M/btsblqm1Rsp/E1KPOM6SoexYJQuqh4pc51/img.png)
+
+
+
+
+
+
+
+---
+
