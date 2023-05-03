@@ -79,6 +79,8 @@ heap에서 root값을 빼내고자 할때 사용한다. heap에서 가장 작은
 
 
 
+
+
 ## 4) 힙 활용
 
 https://www.acmicpc.net/problem/11286
