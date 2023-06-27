@@ -9,3 +9,4 @@ arr = []
 for _ in range(m):
 	# m번 loop을 돌면서 input을 arr에 append
 	arr.append(list(map(int, input().split())))
+	
